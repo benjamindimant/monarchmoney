@@ -132,6 +132,11 @@ class MonarchMoney(object):
         if save_session:
             self.save_session(self._session_file)
 
+    def token_login(self, token: str) -> None:
+        """Logs into a Monarch Money account using a token."""
+        self.set_token(token)
+        self._headers[AUTH_HEADER_KEY] = f"Token {token}"
+
     async def multi_factor_authenticate(
         self, email: str, password: str, code: str
     ) -> None:
